@@ -28,7 +28,6 @@ jobs:
       - run:
           name: Get vendor
           command: |
-            cd src
             dep ensure
       - run:
           name: Run tests
