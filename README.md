@@ -2,6 +2,18 @@
 
 # appengine-go
 
+## Deployment
+
+```bash
+appcfg.py -A [YOUR_PROJECT_ID] -V [YOUR_VERSION_ID] update aeloader
+```
+
+## Local Development
+
+```bash
+dev_appserver.py aeloader
+```
+
 ## Development Environment
 
 We can use [direnv](https://direnv.net/) to help us setup
