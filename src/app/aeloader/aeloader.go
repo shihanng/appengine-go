@@ -1,11 +1,10 @@
 package aeloader
 
 import (
+	"app/applib/guestbook"
+	"app/applib/sign"
 	"html/template"
 	"net/http"
-
-	"github.com/shihanng/appengine-go/src/guestbook"
-	"github.com/shihanng/appengine-go/src/sign"
 
 	"appengine"
 	"appengine/datastore"

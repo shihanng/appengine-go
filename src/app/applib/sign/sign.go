@@ -1,11 +1,11 @@
 package sign
 
 import (
+	"app/applib/guestbook"
 	"net/http"
 	"time"
 
 	"github.com/pborman/uuid"
-	"github.com/shihanng/appengine-go/src/guestbook"
 
 	"appengine"
 	"appengine/datastore"
