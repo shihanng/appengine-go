@@ -2,16 +2,28 @@
 
 # appengine-go
 
+## Project Structure
+
+```
+src
+└── app
+    ├── aeloader
+    ├── applib
+    │   ├── guestbook
+    │   └── sign
+    └── vendor
+```
+
 ## Deployment
 
 ```bash
-appcfg.py -A [YOUR_PROJECT_ID] -V [YOUR_VERSION_ID] update aeloader
+appcfg.py -A [YOUR_PROJECT_ID] -V [YOUR_VERSION_ID] update src/app/aeloader
 ```
 
 ## Local Development
 
 ```bash
-dev_appserver.py aeloader
+dev_appserver.py src/app/aeloader
 ```
 
 ## Development Environment
@@ -20,23 +32,20 @@ We can use [direnv](https://direnv.net/) to help us setup
 an environment that kind of "replace" `go` with `goapp`
 from the [App Engine SDK for Go](https://cloud.google.com/appengine/docs/standard/go/download#appengine_sdk).
 
-In our `.envrc` we can write the following:
+In our `.envrc` we can have something like the following:
 
 ```bash
-export PATH=<path-to-app-engine-sdk-for-go>/go_appengine
-export PATH=<path-to-alias>/go:$PATH
-
-export GOROOT=<path-to-app-engine-sdk-for-go>/go_appengine/goroot-1.8
+export PATH=`pwd`/bin:$HOME/bin/fakego:$HOME/bin/go_appengine:$PATH
+export GOROOT=$HOME/bin/go_appengine/goroot-1.8
+export GOPATH=`pwd`
 ```
 
-Here is the content of `go`
+In `$HOME/bin/fakego` we have a shell script name `go`:
 
 ```sh
 #!/bin/sh
 # Remove gohack from path and run goapp.
-PATH=${PATH#$HOME/bin/gae_go} goapp $@
+PATH=${PATH#$HOME/bin/go_appengine} goapp $@
 ```
 
-Basically you can put `go` wherever you like as long as the
-proper path is provided to `.envrc` as the above.
-With this trick, tests within the editor should run without problem.
+just to tell our editor that we are using `goapp` version of `go`.
