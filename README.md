@@ -4,6 +4,11 @@
 
 ## Project Structure
 
+- `GOPATH` starts from `.`.
+- The "main"/"driver" of the app is in `aeloader`.
+- The other packages of the app live in `applib`.
+- External packages are vendored with [`dep`](https://github.com/golang/dep).
+
 ```
 src
 └── app
